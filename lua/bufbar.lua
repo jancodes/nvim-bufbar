@@ -156,17 +156,9 @@ local function get_name(buffer)
   end
 
   local modifier = (buffer.terminal and M.options.term_modifier) or M.options.modifier
-  local prefix = set_hlgroup(fmt(' %d: ', buffer.bufnr), class, level)
-  local suffix = set_hlgroup(' ',  class, level)
-  local flags = get_flags(buffer)
-
   name = format_name(fn.bufname(buffer.bufnr), modifier, class, level)
 
-  if M.options.show_flags and flags ~= '' then
-    suffix = set_hlgroup(fmt(' %s ', flags), class, level)
-  end
-
-  return fmt('%s%s%s', prefix, name, suffix)
+  return fmt('%s', name, ' ')
 end
 
 function M.build_bufferline()
